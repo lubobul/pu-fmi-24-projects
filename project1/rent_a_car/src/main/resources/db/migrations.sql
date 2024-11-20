@@ -1,1 +1,89 @@
 --Here goes all DDL
+
+CREATE TABLE IF NOT EXISTS td_users
+(
+    id          INT PRIMARY KEY AUTO_INCREMENT,
+    is_active   BOOLEAN DEFAULT TRUE,
+    first_name  VARCHAR(256),
+    last_name   VARCHAR(256),
+    email       VARCHAR(256),
+    phone       VARCHAR(64),
+    personal_id VARCHAR(256)
+);
+
+CREATE TABLE IF NOT EXISTS td_employees
+(
+    id        INT PRIMARY KEY AUTO_INCREMENT,
+    is_active BOOLEAN DEFAULT TRUE,
+    position  VARCHAR(256),
+    user_id   INT,
+    FOREIGN KEY (user_id) REFERENCES td_users (id)
+);
+
+CREATE TABLE IF NOT EXISTS td_cars
+(
+    id                INT PRIMARY KEY AUTO_INCREMENT,
+    is_active         BOOLEAN DEFAULT TRUE,
+    model_year              INT,
+    model             VARCHAR(256),
+    brand             VARCHAR(256),
+    kilometers_driven INT,
+    price_per_day     DOUBLE
+);
+
+CREATE TABLE IF NOT EXISTS td_customers
+(
+    id                 INT PRIMARY KEY AUTO_INCREMENT,
+    is_active          BOOLEAN DEFAULT TRUE,
+    has_past_accidents BOOLEAN DEFAULT FALSE,
+    city_id            INT,
+    user_id            INT,
+    FOREIGN KEY (user_id) REFERENCES td_users (id)
+);
+
+CREATE TABLE IF NOT EXISTS td_cities
+(
+    id          INT PRIMARY KEY AUTO_INCREMENT,
+    is_active   BOOLEAN DEFAULT TRUE,
+    postal_code VARCHAR(64),
+    name        VARCHAR(256)
+);
+
+CREATE TABLE IF NOT EXISTS td_offers
+(
+    id               INT PRIMARY KEY AUTO_INCREMENT,
+    is_active        BOOLEAN DEFAULT TRUE,
+    date_created     DATE,
+    date_accepted    DATE    DEFAULT NULL,
+    requested_from   DATE,
+    requested_to     DATE,
+    rejected         BOOL    DEFAULT FALSE,
+    calculated_price DOUBLE,
+    customer_id      INT,
+    FOREIGN KEY (customer_id) REFERENCES td_customers (id),
+    employee_id      INT,
+    FOREIGN KEY (employee_id) REFERENCES td_employees (id),
+    car_id           INT,
+    FOREIGN KEY (car_id) REFERENCES td_cars (id),
+    city_id          INT,
+    FOREIGN KEY (city_id) REFERENCES td_cities (id)
+);
+
+CREATE TABLE IF NOT EXISTS td_expense_items
+(
+    id        INT PRIMARY KEY AUTO_INCREMENT,
+    is_active BOOLEAN DEFAULT TRUE,
+    offer_id  INT,
+    notes     VARCHAR(1024),
+    price     DOUBLE,
+    current_day       DATE    DEFAULT NULL,
+    FOREIGN KEY (offer_id) REFERENCES td_offers (id)
+);
+
+DROP TABLE td_expense_items;
+DROP TABLE td_offers;
+DROP TABLE td_customers;
+DROP TABLE td_employees;
+DROP TABLE td_users;
+DROP TABLE td_cars;
+DROP TABLE td_cities;

@@ -1,0 +1,49 @@
+## Theoretical DB models
+- Customer -> User
+  - id
+  - has_past_accidents
+  - city_id
+  - user_id
+- Car
+  - id
+  - year
+  - model
+  - brand
+  - kilometers_driven
+  - price_per_day
+- City
+  - id 
+  - postal_code
+  - name
+- Employee -> User
+  - id
+  - position
+  - user_id
+- User
+  - id
+  - firstName
+  - lastName
+  - phone
+  - email
+  - personalId
+  - is_active
+- ExpenseItem
+    - id
+    - offer_id
+    - expense_item_type_id
+    - notes
+    - price: double
+    - day?: Date
+- Offer
+  - id
+  - customer_id
+  - employee_id
+  - car_id
+  - city_id
+  - date_created
+  - date_accepted
+  - requested_from
+  - requested_to
+  - rejected
+  - calculated_price
+  
