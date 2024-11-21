@@ -4,7 +4,6 @@ import java.util.Date;
 
 public class ExpenseItem {
     private int id;
-    private boolean isActive;
     private String type;
     private double price;
     private Date currentDay;
@@ -15,14 +14,6 @@ public class ExpenseItem {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
     }
 
     public String getType() {

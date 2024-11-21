@@ -17,6 +17,7 @@ public class CarRowMapper implements RowMapper<Car> {
         car.setModel(rs.getString("model"));
         car.setKilometersDriven(rs.getInt("kilometers_driven"));
         car.setPricePerDay(rs.getDouble("price_per_day"));
+        car.setCityId(rs.getInt("city_id"));
 
         return car;
     }

@@ -2,7 +2,6 @@ package com.rent_a_car.entities;
 
 public class City {
     private int id;
-    private boolean isActive;
     private String postalCode;
     private String name;
 
@@ -12,14 +11,6 @@ public class City {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
     }
 
     public String getPostalCode() {

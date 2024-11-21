@@ -2,7 +2,6 @@ package com.rent_a_car.entities;
 
 public class Customer extends User{
     private int id;
-    private boolean isActive;
     private boolean hasPastAccidents;
     private City city;
     private int age;
@@ -13,14 +12,6 @@ public class Customer extends User{
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
     }
 
     public boolean isHasPastAccidents() {

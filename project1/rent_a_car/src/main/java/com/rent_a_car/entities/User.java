@@ -2,7 +2,6 @@ package com.rent_a_car.entities;
 
 public class User {
     private int id;
-    private boolean isActive;
 
     private String firstName;
     private String lastName;
@@ -17,14 +16,6 @@ public class User {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
     }
 
     public String getFirstName() {

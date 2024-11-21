@@ -4,7 +4,6 @@ import java.util.Date;
 
 public class Offer {
     private int id;
-    private boolean isActive;
     private Date dateCreated;
     private Date dateAccepted;
     private Date requestedFrom;

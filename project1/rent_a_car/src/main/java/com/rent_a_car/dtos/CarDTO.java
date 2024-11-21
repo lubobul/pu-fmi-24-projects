@@ -1,14 +1,28 @@
-package com.rent_a_car.entities;
+package com.rent_a_car.dtos;
 
-public class Car {
+import com.rent_a_car.entities.Car;
+import com.rent_a_car.entities.City;
+
+public class CarDTO {
     private int id;
     private int modelYear;
     private String model;
     private String brand;
     private int kilometersDriven;
     private double pricePerDay;
+    private City city;
 
-    private int cityId;
+    public CarDTO(Car car){
+        this.id = car.getId();
+        this.modelYear = car.getModelYear();
+        this.model = car.getModel();
+        this.brand = car.getBrand();
+        this.kilometersDriven = car.getKilometersDriven();
+        this.pricePerDay = car.getPricePerDay();
+    }
+
+    public CarDTO(){
+    }
 
     public int getId() {
         return id;
@@ -57,11 +71,12 @@ public class Car {
     public void setPricePerDay(double pricePerDay) {
         this.pricePerDay = pricePerDay;
     }
-    public int getCityId() {
-        return cityId;
+
+    public City getCity() {
+        return city;
     }
 
-    public void setCityId(int cityId) {
-        this.cityId = cityId;
+    public void setCity(City city) {
+        this.city = city;
     }
 }
