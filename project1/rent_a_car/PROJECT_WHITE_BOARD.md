@@ -31,7 +31,7 @@
     - id
     - offer_id
     - expense_item_type_id
-    - notes
+    - type
     - price: double
     - day?: Date
 - Offer

@@ -8,7 +8,10 @@ CREATE TABLE IF NOT EXISTS td_users
     last_name   VARCHAR(256),
     email       VARCHAR(256),
     phone       VARCHAR(64),
-    personal_id VARCHAR(256)
+    personal_id VARCHAR(256),
+    UNIQUE(email),
+    UNIQUE(personal_id),
+    UNIQUE(phone)
 );
 
 CREATE TABLE IF NOT EXISTS td_employees
@@ -18,17 +21,6 @@ CREATE TABLE IF NOT EXISTS td_employees
     position  VARCHAR(256),
     user_id   INT,
     FOREIGN KEY (user_id) REFERENCES td_users (id)
-);
-
-CREATE TABLE IF NOT EXISTS td_cars
-(
-    id                INT PRIMARY KEY AUTO_INCREMENT,
-    is_active         BOOLEAN DEFAULT TRUE,
-    model_year              INT,
-    model             VARCHAR(256),
-    brand             VARCHAR(256),
-    kilometers_driven INT,
-    price_per_day     DOUBLE
 );
 
 CREATE TABLE IF NOT EXISTS td_customers
@@ -46,8 +38,23 @@ CREATE TABLE IF NOT EXISTS td_cities
     id          INT PRIMARY KEY AUTO_INCREMENT,
     is_active   BOOLEAN DEFAULT TRUE,
     postal_code VARCHAR(64),
-    name        VARCHAR(256)
+    name        VARCHAR(256),
+    UNIQUE(name),
+    UNIQUE(postal_code)
 );
+
+CREATE TABLE IF NOT EXISTS td_cars
+(
+    id                INT PRIMARY KEY AUTO_INCREMENT,
+    is_active         BOOLEAN DEFAULT TRUE,
+    model_year              INT,
+    model             VARCHAR(256),
+    brand             VARCHAR(256),
+    kilometers_driven INT,
+    price_per_day     DOUBLE,
+    city_id INT,
+    FOREIGN KEY (city_id) REFERENCES td_cities (id)
+    );
 
 CREATE TABLE IF NOT EXISTS td_offers
 (
@@ -74,7 +81,7 @@ CREATE TABLE IF NOT EXISTS td_expense_items
     id        INT PRIMARY KEY AUTO_INCREMENT,
     is_active BOOLEAN DEFAULT TRUE,
     offer_id  INT,
-    notes     VARCHAR(1024),
+    type     VARCHAR(64),
     price     DOUBLE,
     current_day       DATE    DEFAULT NULL,
     FOREIGN KEY (offer_id) REFERENCES td_offers (id)
