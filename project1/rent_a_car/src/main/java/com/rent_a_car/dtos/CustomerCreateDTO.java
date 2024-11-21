@@ -1,12 +1,14 @@
-package com.rent_a_car.entities;
+package com.rent_a_car.dtos;
 
-public class Customer {
+import com.rent_a_car.entities.User;
+
+public class CustomerCreateDTO {
     private int id;
     private boolean hasPastAccidents;
     private int cityId;
     private int age;
 
-    private int userId;
+    private User user;
 
     public int getId() {
         return id;
@@ -16,7 +18,7 @@ public class Customer {
         this.id = id;
     }
 
-    public boolean hasPastAccidents() {
+    public boolean getHasPastAccidents() {
         return hasPastAccidents;
     }
 
@@ -40,11 +42,11 @@ public class Customer {
         this.cityId = cityId;
     }
 
-    public int getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

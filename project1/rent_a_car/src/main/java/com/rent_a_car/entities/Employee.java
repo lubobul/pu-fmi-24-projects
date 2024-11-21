@@ -1,8 +1,10 @@
 package com.rent_a_car.entities;
 
-public class Employee extends User {
+public class Employee {
     private int id;
     private String position;
+
+    private int userId;
 
     public int getId() {
         return id;
@@ -18,5 +20,13 @@ public class Employee extends User {
 
     public void setPosition(String position) {
         this.position = position;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }

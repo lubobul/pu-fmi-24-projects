@@ -2,7 +2,6 @@ package com.rent_a_car.repositories;
 
 import com.rent_a_car.dtos.CarDTO;
 import com.rent_a_car.entities.Car;
-import com.rent_a_car.entities.City;
 import com.rent_a_car.http.PagedResponse;
 import com.rent_a_car.mappers.CarRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -73,7 +72,7 @@ public class CarRepository {
         return pagedResponse;
     }
 
-    public Car getCar(int id) {
+    public Car getCarById(int id) {
 
         StringBuilder query = new StringBuilder();
         query.append("SELECT * FROM td_cars WHERE is_active = TRUE");

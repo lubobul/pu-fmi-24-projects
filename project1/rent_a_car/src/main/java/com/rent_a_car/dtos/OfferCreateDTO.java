@@ -1,10 +1,8 @@
 package com.rent_a_car.dtos;
 
-import com.rent_a_car.entities.*;
-
 import java.util.Date;
 
-public class OfferDTO {
+public class OfferCreateDTO {
     private int id;
     private Date dateCreated;
     private Date dateAccepted;
@@ -12,24 +10,10 @@ public class OfferDTO {
     private Date requestedTo;
     private boolean rejected;
     private double calculatedPrice;
-    private Customer customer;
-    private Employee employee;
-    private Car car;
-    private City city;
-
-    public OfferDTO(){
-
-    }
-
-    public OfferDTO(Offer offer) {
-        this.id = offer.getId();
-        this.dateCreated = offer.getDateCreated();
-        this.dateAccepted = offer.getDateAccepted();
-        this.requestedFrom = offer.getRequestedFrom();
-        this.requestedTo = offer.getRequestedTo();
-        this.rejected = offer.isRejected();
-        this.calculatedPrice = offer.getCalculatedPrice();
-    }
+    private CustomerCreateDTO customer;
+    private int employeeId;
+    private int carId;
+    private int cityId;
 
     public int getId() {
         return id;
@@ -87,35 +71,35 @@ public class OfferDTO {
         this.calculatedPrice = calculatedPrice;
     }
 
-    public Customer getCustomer() {
+    public CustomerCreateDTO getCustomer() {
         return customer;
     }
 
-    public void setCustomer(Customer customer) {
+    public void setCustomer(CustomerCreateDTO customer) {
         this.customer = customer;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public int getEmployeeId() {
+        return employeeId;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
     }
 
-    public Car getCar() {
-        return car;
+    public int getCarId() {
+        return carId;
     }
 
-    public void setCar(Car car) {
-        this.car = car;
+    public void setCarId(int carId) {
+        this.carId = carId;
     }
 
-    public City getCity() {
-        return city;
+    public int getCityId() {
+        return cityId;
     }
 
-    public void setCity(City city) {
-        this.city = city;
+    public void setCityId(int cityId) {
+        this.cityId = cityId;
     }
 }

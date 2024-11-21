@@ -1,5 +1,6 @@
 package com.rent_a_car.repositories;
 
+import com.rent_a_car.dtos.OfferCreateDTO;
 import com.rent_a_car.dtos.OfferDTO;
 import com.rent_a_car.entities.City;
 import com.rent_a_car.entities.Offer;
@@ -23,7 +24,7 @@ public class OfferRepository {
         this.db = db;
     }
 
-    public Offer createOffer(OfferDTO offer) {
+    public Offer createOffer(OfferCreateDTO offer) {
         StringBuilder sql = new StringBuilder();
         sql.append("INSERT INTO td_offers (is_active, date_created, date_accepted, requested_from, requested_to, rejected, calculated_price, customer_id, employee_id, car_id, city_id) ");
         sql.append("VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
@@ -40,9 +41,9 @@ public class OfferRepository {
             ps.setBoolean(6, offer.isRejected());
             ps.setDouble(7, offer.getCalculatedPrice());
             ps.setLong(8, offer.getCustomer().getId());
-            ps.setLong(9, offer.getEmployee().getId());
-            ps.setLong(10, offer.getCar().getId());
-            ps.setLong(11, offer.getCity().getId());
+            ps.setLong(9, offer.getEmployeeId());
+            ps.setLong(10, offer.getCarId());
+            ps.setLong(11, offer.getCityId());
             return ps;
         }, keyHolder);
 

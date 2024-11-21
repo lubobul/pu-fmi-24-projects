@@ -1,5 +1,6 @@
 package com.rent_a_car.controllers;
 
+import com.rent_a_car.dtos.OfferCreateDTO;
 import com.rent_a_car.dtos.OfferDTO;
 import com.rent_a_car.http.AppResponse;
 import com.rent_a_car.services.OfferService;
@@ -54,7 +55,7 @@ public class OfferController {
 
     //създаване на нова оферта с данни за потребителя, модела на автомобила и дните за наемане
     @PostMapping
-    public ResponseEntity<?> acceptOffer(@RequestBody OfferDTO offer) {
+    public ResponseEntity<?> createOffer(@RequestBody OfferCreateDTO offer) {
         var createdOffer =  this.offerService.createOffer(offer);
 
         if(createdOffer == null) {
@@ -64,6 +65,7 @@ public class OfferController {
         }
 
         return AppResponse.success()
+                .withData(createdOffer)
                 .withMessage("Created offer successfully")
                 .build();
     }

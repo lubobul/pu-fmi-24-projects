@@ -63,7 +63,7 @@ public class CarService {
     }
 
     public CarDTO getCar(int id) {
-        var car = this.carRepository.getCar(id);
+        var car = this.carRepository.getCarById(id);
 
         if (car == null) {
             return null;
@@ -71,7 +71,7 @@ public class CarService {
 
         var carDto = new CarDTO(car);
 
-        var city = this.cityRepository.getCity(car.getCityId());
+        var city = this.cityRepository.getCityById(car.getCityId());
         carDto.setCity(city);
 
         return carDto;

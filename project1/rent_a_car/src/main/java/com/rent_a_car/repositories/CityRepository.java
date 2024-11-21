@@ -18,7 +18,7 @@ public class CityRepository {
         this.db = db;
     }
 
-    public City getCity(int id) {
+    public City getCityById(int id) {
 
         StringBuilder query = new StringBuilder();
         query.append("SELECT * FROM td_cities WHERE is_active = TRUE");
