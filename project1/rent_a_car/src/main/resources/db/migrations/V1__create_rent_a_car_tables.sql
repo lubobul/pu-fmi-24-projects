@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS td_users
     email       VARCHAR(256),
     phone       VARCHAR(64),
     personal_id VARCHAR(256),
+    address VARCHAR(256),
     UNIQUE(email),
     UNIQUE(personal_id),
     UNIQUE(phone)
@@ -28,6 +29,7 @@ CREATE TABLE IF NOT EXISTS td_customers
     id                 INT PRIMARY KEY AUTO_INCREMENT,
     is_active          BOOLEAN DEFAULT TRUE,
     has_past_accidents BOOLEAN DEFAULT FALSE,
+    age INT,
     city_id            INT,
     user_id            INT,
     FOREIGN KEY (user_id) REFERENCES td_users (id)
