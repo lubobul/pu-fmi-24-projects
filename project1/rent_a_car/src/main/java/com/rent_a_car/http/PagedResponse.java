@@ -1,5 +1,6 @@
 package com.rent_a_car.http;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PagedResponse<T> {
@@ -42,5 +43,13 @@ public class PagedResponse<T> {
 
     public void setValues(List<T> values) {
         this.values = values;
+    }
+
+    public static PagedResponse getEmpty(int page, int pageSize){
+        var pagedResponse = new PagedResponse<>(new ArrayList<>());
+        pagedResponse.setPageSize(page);
+        pagedResponse.setPage(pageSize);
+        pagedResponse.setTotalItems(0);
+        return pagedResponse;
     }
 }

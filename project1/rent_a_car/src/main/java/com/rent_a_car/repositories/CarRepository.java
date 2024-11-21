@@ -48,6 +48,10 @@ public class CarRepository {
                     sql.append(" AND price_per_day = ?");
                     params.add(Double.parseDouble(value));
                     break;
+                case "cityId":
+                    sql.append(" AND city_id = ?");
+                    params.add(Integer.parseInt(value));
+                    break;
                 default:
                     break;
             }
@@ -84,14 +88,15 @@ public class CarRepository {
 
     }
 
-    public boolean updateCar(Car car) {
+    public boolean updateCar(CarDTO car) {
 
         StringBuilder sql = new StringBuilder("UPDATE td_cars SET ");
         sql.append("model_year = ?, ");
         sql.append("model = ?, ");
         sql.append("brand = ?, ");
         sql.append("kilometers_driven = ?, ");
-        sql.append("price_per_day = ? ");
+        sql.append("price_per_day = ?, ");
+        sql.append("city_id = ? ");
         sql.append("WHERE id = ? AND is_active = TRUE");
 
         int updated = db.update(
@@ -101,6 +106,7 @@ public class CarRepository {
                 car.getBrand(),
                 car.getKilometersDriven(),
                 car.getPricePerDay(),
+                car.getCity().getId(),
                 car.getId());
 
         if (updated > 1) {

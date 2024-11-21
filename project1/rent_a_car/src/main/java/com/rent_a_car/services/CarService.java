@@ -5,7 +5,6 @@ import com.rent_a_car.entities.Car;
 import com.rent_a_car.http.PagedResponse;
 import com.rent_a_car.repositories.CarRepository;
 import com.rent_a_car.repositories.CityRepository;
-import org.springframework.data.relational.core.sql.In;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -26,6 +25,18 @@ public class CarService {
     }
 
     public PagedResponse<CarDTO> getCars(int page, int pageSize, Map<String, String> filters) {
+        //make sure ID is not passed from outside
+        filters.remove("cityId");
+
+        if(filters.containsKey("location")){
+            var city = this.cityRepository.findCityByName(filters.get("location"));
+            if(city == null){
+                return PagedResponse.getEmpty(page, pageSize);
+            }
+
+            //TODO Not ideal, but it works for now, perhaps getCars
+            filters.put("cityId", city.getId() + "");
+        }
 
         var carPagedResponse = this.carRepository.getCars(page, pageSize, filters);
 
@@ -33,7 +44,6 @@ public class CarService {
                 .getValues()
                 .stream()
                 .map(Car::getCityId)
-                .filter(id -> id != null)
                 .collect(Collectors.toSet());
 
         var citiesMap = this.cityRepository.findCitiesByIds(uniqueCityIds.stream().toList());
@@ -71,6 +81,8 @@ public class CarService {
 
         var city = this.cityRepository.findCity(car.getCity());
 
+        //Внимание. Всички автомобили са разпределени само и единствено между 4 - те града
+        // като системата не трябва да допуска вариант при който се добя или актуализира автомобил извън предварително зададените градове.
         if (city == null) {
             //TODO Of course here it will e better to throw a specific exception, but we are Ok like that for now.
             return false;
@@ -80,7 +92,16 @@ public class CarService {
         return this.carRepository.createCar(car);
     }
 
-    public boolean updateCar(Car car) {
+    public boolean updateCar(CarDTO car) {
+        var city = this.cityRepository.findCity(car.getCity());
+
+        //Внимание. Всички автомобили са разпределени само и единствено между 4 - те града
+        // като системата не трябва да допуска вариант при който се добя или актуализира автомобил извън предварително зададените градове.
+        if (city == null) {
+            //TODO Of course here it will e better to throw a specific exception, but we are Ok like that for now.
+            return false;
+        }
+        car.setCity(city);
         return this.carRepository.updateCar(car);
     }
 

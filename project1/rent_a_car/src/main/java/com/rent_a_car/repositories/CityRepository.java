@@ -42,12 +42,30 @@ public class CityRepository {
 
         StringBuilder query = new StringBuilder();
         query.append("SELECT * FROM td_cities WHERE is_active = TRUE");
-        query.append(" AND name LIKE ?");
-        query.append(" OR postal_code LIKE ?");
+        query.append(" AND name = ?");
+        query.append(" AND postal_code = ?");
 
         List<Object> params = new ArrayList<>();
-        params.add("%" + city.getName() + "%");
-        params.add("%" + city.getPostalCode() + "%");
+        params.add(city.getName());
+        params.add(city.getPostalCode());
+
+        List<City> collection = this.db.query(query.toString(), params.toArray(), new CityRowMapper());
+
+        if (collection.isEmpty()) {
+            return null;
+        }
+
+        return collection.get(0);
+    }
+
+    public City findCityByName(String cityName) {
+
+        StringBuilder query = new StringBuilder();
+        query.append("SELECT * FROM td_cities WHERE is_active = TRUE");
+        query.append(" AND name LIKE ?");
+
+        List<Object> params = new ArrayList<>();
+        params.add("%" + cityName + "%");
 
         List<City> collection = this.db.query(query.toString(), params.toArray(), new CityRowMapper());
 

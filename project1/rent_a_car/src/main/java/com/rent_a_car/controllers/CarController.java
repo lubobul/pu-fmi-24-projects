@@ -21,6 +21,8 @@ public class CarController {
     }
 
     //Листване на всички автомобили базирано на филтри
+    //Листване на всички автомобили, на базата на локацията на клиента
+    //example /cars?page=1&pageSize=5&location=Plov will return all cars with location that contains "Plov"
     @GetMapping
     public ResponseEntity<?> getCars(
             @RequestParam(defaultValue = "0") int page,
@@ -70,7 +72,7 @@ public class CarController {
 
     //Актуализация на съществуващ автомобил
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateCar(@RequestBody Car car) {
+    public ResponseEntity<?> updateCar(@RequestBody CarDTO car) {
         boolean isUpdateSuccessful =  this.carService.updateCar(car);
 
         if(!isUpdateSuccessful) {
