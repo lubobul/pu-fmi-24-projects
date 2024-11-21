@@ -1,11 +1,6 @@
 package com.rent_a_car.repositories;
-
-import com.rent_a_car.entities.Car;
 import com.rent_a_car.entities.City;
-import com.rent_a_car.http.PagedResponse;
-import com.rent_a_car.mappers.CarRowMapper;
 import com.rent_a_car.mappers.CityRowMapper;
-import org.springframework.data.relational.core.sql.In;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 

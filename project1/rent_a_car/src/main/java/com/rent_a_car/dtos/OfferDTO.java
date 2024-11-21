@@ -1,8 +1,13 @@
-package com.rent_a_car.entities;
+package com.rent_a_car.dtos;
+
+import com.rent_a_car.entities.Car;
+import com.rent_a_car.entities.City;
+import com.rent_a_car.entities.Customer;
+import com.rent_a_car.entities.Employee;
 
 import java.util.Date;
 
-public class Offer {
+public class OfferDTO {
     private int id;
     private Date dateCreated;
     private Date dateAccepted;
@@ -10,10 +15,10 @@ public class Offer {
     private Date requestedTo;
     private boolean rejected;
     private double calculatedPrice;
-    private int customerId;
-    private int employeeId;
-    private int carId;
-    private int cityId;
+    private Customer customer;
+    private Employee employee;
+    private Car car;
+    private City city;
 
     public int getId() {
         return id;
@@ -71,35 +76,35 @@ public class Offer {
         this.calculatedPrice = calculatedPrice;
     }
 
-    public int getCustomerId() {
-        return customerId;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
-    public int getEmployeeId() {
-        return employeeId;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setEmployeeId(int employeeId) {
-        this.employeeId = employeeId;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
-    public int getCarId() {
-        return carId;
+    public Car getCar() {
+        return car;
     }
 
-    public void setCarId(int carId) {
-        this.carId = carId;
+    public void setCar(Car car) {
+        this.car = car;
     }
 
-    public int getCityId() {
-        return cityId;
+    public City getCity() {
+        return city;
     }
 
-    public void setCityId(int cityId) {
-        this.cityId = cityId;
+    public void setCity(City city) {
+        this.city = city;
     }
 }
