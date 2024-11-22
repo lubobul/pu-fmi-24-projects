@@ -50,7 +50,7 @@ INSERT INTO td_cars (is_active, model_year, model, brand, kilometers_driven, pri
 INSERT INTO td_cars (is_active, model_year, model, brand, kilometers_driven, price_per_day, city_id) VALUES (TRUE, 2018, 'X5', 'BMW', 23000, 75.0, 4);
 INSERT INTO td_cars (is_active, model_year, model, brand, kilometers_driven, price_per_day, city_id) VALUES (TRUE, 2019, 'Ranger', 'Ford', 19000, 45.0, 4);
 
---EMPLOYEES
+--USERS
 INSERT INTO td_users (is_active, first_name, last_name, email, phone, personal_id, address) VALUES
 (TRUE, 'Ivan', 'Ivanov', 'ivan.ivanov1@example.com', '+359 888 111 222', '1234567890', 'Sofia, Bulgaria'),
 (TRUE, 'Maria', 'Petrova', 'maria.petrova1@example.com', '+359 888 222 333', '1234567891', 'Plovdiv, Bulgaria'),

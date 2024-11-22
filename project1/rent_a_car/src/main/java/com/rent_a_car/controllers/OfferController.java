@@ -23,15 +23,15 @@ public class OfferController {
 
     //листване на всички оферти за даден потребител
     @GetMapping
-    public ResponseEntity<?> fetchAllOffer(
+    public ResponseEntity<?> getOffers(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int pageSize,
             @RequestParam Map<String, String> filters
     ) {
+        var offersPagedResponse = this.offerService.getOffers(page, pageSize, filters);
         return AppResponse
                 .success()
-                .withData(new ArrayList<Integer>(2) {
-                })
+                .withData(offersPagedResponse)
                 .build();
     }
 
@@ -40,7 +40,7 @@ public class OfferController {
     public ResponseEntity<?> getOffer(@PathVariable int id) {
         var offer = this.offerService.getOffer(id);
 
-        if(offer == null) {
+        if (offer == null) {
             return AppResponse
                     .error()
                     .withCode(HttpStatus.NOT_FOUND)
@@ -56,9 +56,9 @@ public class OfferController {
     //създаване на нова оферта с данни за потребителя, модела на автомобила и дните за наемане
     @PostMapping
     public ResponseEntity<?> createOffer(@RequestBody OfferCreateDTO offer) {
-        var createdOffer =  this.offerService.createOffer(offer);
+        var createdOffer = this.offerService.createOffer(offer);
 
-        if(createdOffer == null) {
+        if (createdOffer == null) {
             return AppResponse.error()
                     .withMessage("Offer not created successfully")
                     .build();
@@ -73,6 +73,14 @@ public class OfferController {
     //приемане на оферта - в склучай в които потребителя вземе автомобила
     @PostMapping("/{id}/accept")
     public ResponseEntity<?> acceptOffer(@PathVariable int id) {
+
+        var isAccepted = this.offerService.acceptOffer(id);
+
+        if (!isAccepted) {
+            return AppResponse.error()
+                    .withMessage("Offer not accepted successfully")
+                    .build();
+        }
         return AppResponse
                 .success()
                 .build();
@@ -81,8 +89,16 @@ public class OfferController {
     //изтриване на оферта
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteOffer(@PathVariable int id) {
-        return AppResponse
-                .success()
+        boolean isDeleteSuccessful =  this.offerService.deleteOffer(id);
+
+        if(!isDeleteSuccessful) {
+            return AppResponse.error()
+                    .withMessage("Offer not deleted successfully")
+                    .build();
+        }
+
+        return AppResponse.success()
+                .withMessage("Delete successful")
                 .build();
     }
 }

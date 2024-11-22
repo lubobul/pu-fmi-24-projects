@@ -57,10 +57,10 @@ public class CityRepository {
 
         StringBuilder query = new StringBuilder();
         query.append("SELECT * FROM td_cities WHERE is_active = TRUE");
-        query.append(" AND name LIKE ?");
+        query.append(" AND name = ?");
 
         List<Object> params = new ArrayList<>();
-        params.add("%" + cityName + "%");
+        params.add(cityName);
 
         List<City> collection = this.db.query(query.toString(), params.toArray(), new CityRowMapper());
 

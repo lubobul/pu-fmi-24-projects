@@ -6,7 +6,8 @@ public class ExpenseItem {
     private int id;
     private String type;
     private double price;
-    private Date currentDay;
+    private int days;
+    private int offerId;
 
     public int getId() {
         return id;
@@ -32,12 +33,20 @@ public class ExpenseItem {
         this.price = price;
     }
 
-    public Date getCurrentDay() {
-        return currentDay;
+    public int getDays() {
+        return days;
     }
 
-    public void setCurrentDay(Date currentDay) {
-        this.currentDay = currentDay;
+    public void setDays(int days) {
+        this.days = days;
+    }
+
+    public int getOfferId() {
+        return offerId;
+    }
+
+    public void setOfferId(int offerId) {
+        this.offerId = offerId;
     }
 }
 

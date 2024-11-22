@@ -1,7 +1,9 @@
 package com.rent_a_car.repositories;
 
 import com.rent_a_car.dtos.CustomerCreateDTO;
+import com.rent_a_car.entities.City;
 import com.rent_a_car.entities.Customer;
+import com.rent_a_car.mappers.CityRowMapper;
 import com.rent_a_car.mappers.CustomerRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -19,6 +22,26 @@ public class CustomerRepository {
 
     public CustomerRepository(JdbcTemplate db) {
         this.db = db;
+    }
+
+    public Customer findCustomer(String email, String phone){
+        StringBuilder query = new StringBuilder();
+        query.append("SELECT * FROM td_customers cu ");
+        query.append("JOIN td_users us ON us.id = cu.user_id ");
+        query.append("WHERE us.is_active = TRUE AND cu.is_active = TRUE ");
+        query.append("AND us.email = ? OR  us.phone = ?");
+
+        List<Object> params = new ArrayList<>();
+        params.add(email);
+        params.add(phone);
+
+        List<Customer> collection = this.db.query(query.toString(), params.toArray(), new CustomerRowMapper());
+
+        if (collection.isEmpty()) {
+            return null;
+        }
+
+        return collection.get(0);
     }
 
 

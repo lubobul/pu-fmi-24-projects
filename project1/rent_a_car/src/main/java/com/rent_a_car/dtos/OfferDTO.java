@@ -3,6 +3,7 @@ package com.rent_a_car.dtos;
 import com.rent_a_car.entities.*;
 
 import java.util.Date;
+import java.util.List;
 
 public class OfferDTO {
     private int id;
@@ -12,10 +13,11 @@ public class OfferDTO {
     private Date requestedTo;
     private boolean rejected;
     private double calculatedPrice;
-    private Customer customer;
+    private CustomerDTO customer;
     private Employee employee;
     private Car car;
     private City city;
+    private List<ExpenseItem> expenseItems;
 
     public OfferDTO(){
 
@@ -87,11 +89,11 @@ public class OfferDTO {
         this.calculatedPrice = calculatedPrice;
     }
 
-    public Customer getCustomer() {
+    public CustomerDTO getCustomer() {
         return customer;
     }
 
-    public void setCustomer(Customer customer) {
+    public void setCustomer(CustomerDTO customer) {
         this.customer = customer;
     }
 
@@ -117,5 +119,13 @@ public class OfferDTO {
 
     public void setCity(City city) {
         this.city = city;
+    }
+
+    public List<ExpenseItem> getExpenseItems() {
+        return expenseItems;
+    }
+
+    public void setExpenseItems(List<ExpenseItem> expenseItems) {
+        this.expenseItems = expenseItems;
     }
 }

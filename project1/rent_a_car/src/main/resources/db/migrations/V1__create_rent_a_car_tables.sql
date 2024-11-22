@@ -62,10 +62,10 @@ CREATE TABLE IF NOT EXISTS td_offers
 (
     id               INT PRIMARY KEY AUTO_INCREMENT,
     is_active        BOOLEAN DEFAULT TRUE,
-    date_created     DATE,
-    date_accepted    DATE    DEFAULT NULL,
-    requested_from   DATE,
-    requested_to     DATE,
+    date_created     TIMESTAMP,
+    date_accepted    TIMESTAMP    DEFAULT NULL,
+    requested_from   TIMESTAMP,
+    requested_to     TIMESTAMP,
     rejected         BOOL    DEFAULT FALSE,
     calculated_price DOUBLE,
     customer_id      INT,
@@ -80,12 +80,12 @@ CREATE TABLE IF NOT EXISTS td_offers
 
 CREATE TABLE IF NOT EXISTS td_expense_items
 (
-    id        INT PRIMARY KEY AUTO_INCREMENT,
-    is_active BOOLEAN DEFAULT TRUE,
-    offer_id  INT,
-    type     VARCHAR(64),
-    price     DOUBLE,
-    current_day       DATE    DEFAULT NULL,
+    id          INT PRIMARY KEY AUTO_INCREMENT,
+    is_active   BOOLEAN DEFAULT TRUE,
+    offer_id    INT,
+    type        VARCHAR(64),
+    price       DOUBLE,
+    days        INT    DEFAULT 0,
     FOREIGN KEY (offer_id) REFERENCES td_offers (id)
 );
 

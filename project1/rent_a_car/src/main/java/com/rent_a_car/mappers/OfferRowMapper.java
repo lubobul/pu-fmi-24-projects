@@ -14,10 +14,10 @@ public class OfferRowMapper implements RowMapper<Offer> {
         Offer offer = new Offer();
         offer.setId(rs.getInt("id"));
         offer.setRejected(rs.getBoolean("rejected"));
-        offer.setRequestedFrom(rs.getDate("requested_from"));
-        offer.setRequestedTo(rs.getDate("requested_to"));
-        offer.setDateAccepted(rs.getDate("date_accepted"));
-        offer.setDateCreated(rs.getDate("date_created"));
+        offer.setRequestedFrom(rs.getTimestamp("requested_from"));
+        offer.setRequestedTo(rs.getTimestamp("requested_to"));
+        offer.setDateAccepted(rs.getTimestamp("date_accepted"));
+        offer.setDateCreated(rs.getTimestamp("date_created"));
         offer.setCalculatedPrice(rs.getDouble("calculated_price"));
         offer.setCarId(rs.getInt("car_id"));
         offer.setCityId(rs.getInt("city_id"));

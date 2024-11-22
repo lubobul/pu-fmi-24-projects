@@ -1,0 +1,329 @@
+{
+	"info": {
+		"_postman_id": "936bf780-1f7c-4504-b08d-9d2d56bb22b1",
+		"name": "Rent A Car",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2530083"
+	},
+	"item": [
+		{
+			"name": "Cars",
+			"item": [
+				{
+					"name": "Get Cars Paginated",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/cars?page=1&pageSize=5&brand=onda",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"cars"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "5"
+								},
+								{
+									"key": "brand",
+									"value": "onda"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Cars By Location",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/cars?page=1&pageSize=5&location=Plov",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"cars"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "5"
+								},
+								{
+									"key": "location",
+									"value": "Plov"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Car by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/cars",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"cars"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Car by ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/cars/2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"cars",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new Car",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"modelYear\": 2019,\n        \"model\": \"Model 3\",\n        \"brand\": \"Tesla\",\n        \"kilometersDriven\": 12000,\n        \"pricePerDay\": 50.0,\n        \"city\": {\n            \"name\": \"Plovdiv\"\n        }\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/cars",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"cars"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new Car Copy",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"id\": 4,\n        \"modelYear\": 2018,\n        \"model\": \"Mustang\",\n        \"brand\": \"Ford\",\n        \"kilometersDriven\": 30000,\n        \"pricePerDay\": 45.0,\n        \"city\": {\n            \"postalCode\": \"1000\",\n            \"name\": \"Sofia\"\n        }\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/cars/4",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"cars",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Offers",
+			"item": [
+				{
+					"name": "Get Offer by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/offers/4",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"offers",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Offers Paginated",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/offers?page=1&pageSize=5&customerEmail=arnald@gg.com",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"offers"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "5"
+								},
+								{
+									"key": "customerEmail",
+									"value": "arnald@gg.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Offer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n    \"dateCreated\": \"2024-11-21T21:36:25.044Z\",\n    \"dateAccepted\": null,\n    \"requestedFrom\": \"2024-11-21T21:36:25.044Z\",\n    \"requestedTo\": \"2024-11-28T21:36:25.044Z\",\n    \"rejected\": \"false\",\n    \"calculatedPrice\": \"0\",\n    \"employeeId\": 2,\n    \"carId\": \"37\",\n    \"cityId\": \"4\",\n    \"customer\": {\n        \"hasPastAccidents\" : true,\n        \"cityId\": 4,\n        \"age\": 33,\n        \"user\": {\n            \"firstName\": \"Kaloqn\",\n            \"lastName\": \"Stamatov\",\n             \"email\": \"kalata.stam@gg.com\",\n             \"phone\": \"+359888456123\",\n             \"personalId\": \"2244113234\",\n             \"address\": \"Plovdiv, Bulgaria, bul. Nikola Vaptzarov\"\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/offers",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"offers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Accept Offer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n    \"dateCreated\": \"2024-11-21T21:36:25.044Z\",\n    \"dateAccepted\": null,\n    \"requestedFrom\": \"2024-11-21T21:36:25.044Z\",\n    \"requestedTo\": \"2024-11-28T21:36:25.044Z\",\n    \"rejected\": \"false\",\n    \"calculatedPrice\": \"0\",\n    \"employeeId\": 2,\n    \"carId\": \"37\",\n    \"cityId\": \"4\",\n    \"customer\": {\n        \"hasPastAccidents\" : true,\n        \"cityId\": 4,\n        \"age\": 33,\n        \"user\": {\n            \"firstName\": \"Kaloqn\",\n            \"lastName\": \"Stamatov\",\n             \"email\": \"kalata.stam@gg.com\",\n             \"phone\": \"+359888456123\",\n             \"personalId\": \"2244113234\",\n             \"address\": \"Plovdiv, Bulgaria, bul. Nikola Vaptzarov\"\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/offers/7/accept",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"offers",
+								"7",
+								"accept"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Offer",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n    \"dateCreated\": \"2024-11-21T21:36:25.044Z\",\n    \"dateAccepted\": null,\n    \"requestedFrom\": \"2024-11-21T21:36:25.044Z\",\n    \"requestedTo\": \"2024-11-28T21:36:25.044Z\",\n    \"rejected\": \"false\",\n    \"calculatedPrice\": \"0\",\n    \"employeeId\": 2,\n    \"carId\": \"37\",\n    \"cityId\": \"4\",\n    \"customer\": {\n        \"hasPastAccidents\" : true,\n        \"cityId\": 4,\n        \"age\": 33,\n        \"user\": {\n            \"firstName\": \"Kaloqn\",\n            \"lastName\": \"Stamatov\",\n             \"email\": \"kalata.stam@gg.com\",\n             \"phone\": \"+359888456123\",\n             \"personalId\": \"2244113234\",\n             \"address\": \"Plovdiv, Bulgaria, bul. Nikola Vaptzarov\"\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/offers/7",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"offers",
+								"7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://localhost:8165",
+			"type": "string"
+		}
+	]
+}
